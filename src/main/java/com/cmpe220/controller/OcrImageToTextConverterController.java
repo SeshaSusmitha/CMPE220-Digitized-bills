@@ -9,10 +9,18 @@ import com.cmpe220.service.OcrImageToTextConverterService;
 public class OcrImageToTextConverterController {
 
 	@Autowired
-	private OcrImageToTextConverterService getTextFromPhotoService;
+	private OcrImageToTextConverterService getTextFromReceiptService;
 	
-	@RequestMapping("/getTextFromPhoto")
-	public void getTextFromPhoto(){
-		getTextFromPhotoService.getTextFromPhoto();
+	@RequestMapping("/getTotalFromReceipt")
+	public String getTotalFromReceipt(){
+		String total = null;
+		total = getTextFromReceiptService.getTotalFromReceipt();
+		return total;
+	}
+	@RequestMapping("/getTaxFromReceipt")
+	public String getTaxFromReceipt(){
+		String total = null;
+		total = getTextFromReceiptService.getTaxFromReceipt();
+		return total;
 	}
 }
