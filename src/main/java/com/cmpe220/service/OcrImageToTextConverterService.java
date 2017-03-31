@@ -47,12 +47,12 @@ public class OcrImageToTextConverterService {
 		
 		//((INVOICE|ATC)(?=(:*[\s]*[$]*[0-9])))+(:*[\s]*[$]*[0-9]+)
 		//String patternString = "\\b(" + StringUtils.join(tokens, "|") + ")\\b";
-		String patternString = "((" + StringUtils.join(tokens, "|") + ")(?=(:*[\\s]*[$]*[0-9])))+(:*[\\s]*[$]*[0-9]+)";
+		String patternString = "((" + StringUtils.join(tokens, "|") + ")(?=(:*[\\s]*[$]*[0-9]+.[0-9]*)))+(:*[\\s]*[$]*([0-9]+.[0-9]*))";
 		//String patternString = "((" + tokens + "))";
 		Pattern pattern = Pattern.compile(patternString);
 		Matcher matcher = pattern.matcher(text);
 		while (matcher.find()) {
-			totalResult = matcher.group();
+			totalResult = matcher.group(5);
 		}
 		return totalResult;
 		
@@ -65,12 +65,12 @@ public class OcrImageToTextConverterService {
         List<String> tokens = new ArrayList<String>();
 		tokens.add("Tax");
 		tokens.add("Card");
-		String patternString = "((" + StringUtils.join(tokens, "|") + ")(?=(:*[\\s]*[$]*[0-9]+.[0-9]*)))+(:*[\\s]*[$]*[0-9]+.[0-9]*)";
+		String patternString = "((" + StringUtils.join(tokens, "|") + ")(?=(:*[\\s]*[$]*[0-9]+.[0-9]*)))+(:*[\\s]*[$]*([0-9]+.[0-9]*))";
 		Pattern pattern = Pattern.compile(patternString);
 		Matcher matcher = pattern.matcher(text);
 		
 		while (matcher.find()) {
-			tax = matcher.group();
+			tax = matcher.group(5);
 		}
 		//System.out.println(text);
 		return tax;
