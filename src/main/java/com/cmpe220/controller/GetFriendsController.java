@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cmpe220.model.Friends;
+import com.cmpe220.model.Friend;
 import com.cmpe220.service.GetFriendsService;
 
 @RestController
@@ -18,7 +18,7 @@ public class GetFriendsController {
 	private GetFriendsService getFriendsService;
 	
 	@RequestMapping("/getFriends")
-	public List<Friends> getAllFriends(){
+	public List<Friend> getAllFriends(){
 		return getFriendsService.getAllFriends();
 	}
 

@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,17 +26,34 @@ public class Bill {
 	@Column(name="total")
 	float total;
 	
+	@Column(name="bill_path")
+	String billPath;
+	
+	public String getBillPath() {
+		return billPath;
+	}
+
+	public void setBillPath(String billPath) {
+		this.billPath = billPath;
+	}
+
+	@OneToOne
+	@JoinColumn(name="user_id")
+	User UserId;
+	
 	@OneToMany(mappedBy="billId")
 	private Set<Items> items;
 	
-	public Bill(int billId, float tax, float total, Set<Items> items) {
+	public Bill(int billId, float tax, float total, String billPath, User userId, Set<Items> items) {
 		super();
 		this.billId = billId;
 		this.tax = tax;
 		this.total = total;
+		this.billPath = billPath;
+		UserId = userId;
 		this.items = items;
 	}
-	
+
 	public Bill(){
 		
 	}
@@ -70,7 +89,13 @@ public class Bill {
 	public void setItems(Set<Items> items) {
 		this.items = items;
 	}
-	
-	
+
+	public User getUserId() {
+		return UserId;
+	}
+
+	public void setUserId(User userId) {
+		UserId = userId;
+	}
 
 }
