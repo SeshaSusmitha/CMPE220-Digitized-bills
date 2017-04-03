@@ -2,6 +2,7 @@ package com.cmpe220.service;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,6 +10,10 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.cmpe220.object.Item;
+import com.cmpe220.object.JsonRequestWrapper;
+import com.cmpe220.object.SplitFriendsDetails;
 
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
@@ -22,18 +27,46 @@ public class OcrImageToTextConverterService {
 	
 	public String convertReceiptToText() {
 		String textFromReceipt = null;
-		File imageFile = new File("/Users/poojaprakashchand/Downloads/bill2.jpeg");
+		File imageFile = new File("./src/main/resources/receiptImage/bill2.jpeg");
 		Tesseract instance = new Tesseract();
 		instance.setLanguage(DEFAULT_LANG);
         instance.setDatapath(DEFAULT_TESSDATA_PATH);
         instance.setPageSegMode(Integer.parseInt(DEFAULT_PAGE_SEG_MODE));
         try{
         	textFromReceipt = instance.doOCR(imageFile); 
-        	//System.out.println(textFromReceipt);
+        	System.out.println(textFromReceipt);
         } catch(TesseractException e){
         	System.err.println(e.getMessage());
         }		
         return textFromReceipt;
+	}
+	
+	@ResponseBody
+	public JsonRequestWrapper getReceiptDetails(){
+		OcrImageToTextConverterService serviceObj = new OcrImageToTextConverterService();
+		
+		JsonRequestWrapper obj = new JsonRequestWrapper();
+		obj.setBillPath("./src/main/resources/receiptImage/bill2.jpeg");
+		obj.setUserID(0);
+		obj.setTax(serviceObj.getTaxFromReceipt());
+		obj.setTotal(serviceObj.getTotalFromReceipt());
+		obj.setBillName("costco");
+		obj.setItems(serviceObj.getItemDetails());
+		return obj;
+	}
+	
+	public List<Item> getItemDetails(){
+		List<Item> items = Arrays.asList(
+			new Item("1","biscuit","10", 
+					Arrays.asList(new SplitFriendsDetails(1,5.0), 
+								  new SplitFriendsDetails(2,5.0))
+					),
+			new Item("2", "coke", "20",
+					Arrays.asList(new SplitFriendsDetails(1,10.0), 
+							  	  new SplitFriendsDetails(2,10.0))
+					)
+			);
+		return items;
 	}
 
 	@ResponseBody
@@ -75,5 +108,5 @@ public class OcrImageToTextConverterService {
 		//System.out.println(text);
 		return tax;
 	}
-
+	
 }
