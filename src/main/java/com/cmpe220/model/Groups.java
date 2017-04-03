@@ -13,8 +13,8 @@ public class Groups {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="group_id")
-	int groupId;
+	@Column(name="id")
+	int id;
 	
 	@Column(name="group_name")
 	String groupName;
@@ -31,18 +31,18 @@ public class Groups {
 	
 	public Groups(int groupId, String groupName, String dateCreated, String dateUpdated) {
 		super();
-		this.groupId = groupId;
+		this.id = groupId;
 		this.groupName = groupName;
 		this.dateCreated = dateCreated;
 		this.dateUpdated = dateUpdated;
 	}
 
 	public int getGroupId() {
-		return groupId;
+		return id;
 	}
 
 	public void setGroupId(int groupId) {
-		this.groupId = groupId;
+		this.id = groupId;
 	}
 
 	public String getGroupName() {

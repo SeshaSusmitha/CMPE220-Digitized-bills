@@ -1,6 +1,7 @@
 package com.cmpe220.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +14,7 @@ public class OcrImageToTextConverterController {
 	@Autowired
 	private OcrImageToTextConverterService getTextFromReceiptService;
 	
+	@CrossOrigin(origins = "*")
 	@RequestMapping("/getReceiptDetails")
 	public JsonRequestWrapper getReceiptDetails(){
 		JsonRequestWrapper obj = new JsonRequestWrapper();

@@ -13,8 +13,8 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="user_id")
-	int userId;
+	@Column(name="id")
+	int id;
 	
 	@Column(name="token")
 	String token;
@@ -38,10 +38,10 @@ public class User {
 		
 	}
 
-	public User(int userId, String token, String firstName, String lastName, String emailId, String dateCreated,
+	public User(int id, String token, String firstName, String lastName, String emailId, String dateCreated,
 			String dateUpdated) {
 		super();
-		this.userId = userId;
+		this.id = id;
 		this.token = token;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -51,11 +51,11 @@ public class User {
 	}
 
 	public int getUserId() {
-		return userId;
+		return id;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUserId(int id) {
+		this.id = id;
 	}
 
 	public String getToken() {
@@ -105,7 +105,4 @@ public class User {
 	public void setDateUpdated(String dateUpdated) {
 		this.dateUpdated = dateUpdated;
 	}
-	
-	
-
 }

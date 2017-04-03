@@ -14,8 +14,8 @@ import javax.persistence.Table;
 public class Items {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="item_id")
-	int itemId;
+	@Column(name="id")
+	int id;
 	
 	@Column(name="item_description")
 	String itemDescription;
@@ -33,18 +33,18 @@ public class Items {
 
 	public Items(int itemId, String itemDescription, float itemPrice, Bill billId) {
 		super();
-		this.itemId = itemId;
+		this.id = itemId;
 		this.itemDescription = itemDescription;
 		this.itemPrice = itemPrice;
 		this.billId = billId;
 	}
 
 	public int getItemId() {
-		return itemId;
+		return id;
 	}
 
 	public void setItemId(int itemId) {
-		this.itemId = itemId;
+		this.id = itemId;
 	}
 
 	public String getItemDescription() {

@@ -37,6 +37,7 @@ public class SplitReceipt {
 	@Column(name="amount")
 	float amount;
 	
+	
 	public SplitReceipt() {
 		super();
 		// TODO Auto-generated constructor stub

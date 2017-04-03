@@ -7,24 +7,24 @@ import javax.persistence.Entity;
 public class UserGroups {
 	
 	@EmbeddedId
-	private UserGroupId userGroupId;
+	private UserGroupId id;
 	
 	public UserGroups() {
 		super();
 		
 	}
 
-	public UserGroups(UserGroupId userGroupId) {
+	public UserGroups(UserGroupId id) {
 		super();
-		this.userGroupId = userGroupId;
+		this.id = id;
 	}
 
 	public UserGroupId getUserGroupId() {
-		return userGroupId;
+		return id;
 	}
 
-	public void setUserGroupId(UserGroupId userGroupId) {
-		this.userGroupId = userGroupId;
+	public void setUserGroupId(UserGroupId id) {
+		this.id = id;
 	}
 	
 	

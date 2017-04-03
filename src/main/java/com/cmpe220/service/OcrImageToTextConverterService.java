@@ -56,14 +56,20 @@ public class OcrImageToTextConverterService {
 	}
 	
 	public List<Item> getItemDetails(){
+		
 		List<Item> items = Arrays.asList(
 			new Item("1","biscuit","10", 
 					Arrays.asList(new SplitFriendsDetails(1,5.0), 
 								  new SplitFriendsDetails(2,5.0))
 					),
 			new Item("2", "coke", "20",
-					Arrays.asList(new SplitFriendsDetails(1,10.0), 
-							  	  new SplitFriendsDetails(2,10.0))
+					//Arrays.asList(new SplitFriendsDetails(1,10.0), 
+						//	  	  new SplitFriendsDetails(2,10.0))
+					Arrays.asList(null, 
+						  	  null)
+					),
+			new Item("3","pepsi","10", 
+					null
 					)
 			);
 		return items;

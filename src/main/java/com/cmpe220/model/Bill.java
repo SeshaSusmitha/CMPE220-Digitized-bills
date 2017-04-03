@@ -17,8 +17,8 @@ import javax.persistence.Table;
 public class Bill {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="bill_id")
-	int billId;
+	@Column(name="id")
+	int id;
 	
 	@Column(name="tax")
 	float tax;
@@ -44,9 +44,9 @@ public class Bill {
 	@OneToMany(mappedBy="billId")
 	private Set<Items> items;
 	
-	public Bill(int billId, float tax, float total, String billPath, User userId, Set<Items> items) {
+	public Bill(int id, float tax, float total, String billPath, User userId, Set<Items> items) {
 		super();
-		this.billId = billId;
+		this.id = id;
 		this.tax = tax;
 		this.total = total;
 		this.billPath = billPath;
@@ -59,11 +59,11 @@ public class Bill {
 	}
 
 	public int getBillId() {
-		return billId;
+		return id;
 	}
 
-	public void setBillId(int billId) {
-		this.billId = billId;
+	public void setBillId(int id) {
+		this.id = id;
 	}
 
 	public float getTax() {
