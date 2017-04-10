@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -15,9 +16,6 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id")
 	int id;
-	
-	@Column(name="token")
-	String token;
 	
 	@Column(name="first_name")
 	String firstName;
@@ -38,11 +36,10 @@ public class User {
 		
 	}
 
-	public User(int id, String token, String firstName, String lastName, String emailId, String dateCreated,
+	public User(int id, String firstName, String lastName, String emailId, String dateCreated,
 			String dateUpdated) {
 		super();
 		this.id = id;
-		this.token = token;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.emailId = emailId;
@@ -56,14 +53,6 @@ public class User {
 
 	public void setUserId(int id) {
 		this.id = id;
-	}
-
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
 	}
 
 	public String getFirstName() {

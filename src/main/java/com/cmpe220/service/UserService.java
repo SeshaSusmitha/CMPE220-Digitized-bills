@@ -23,6 +23,25 @@ public class UserService {
 		userRepository.findAll()
 		.forEach(users::add);
 		return users;
-		
+	}
+	
+	public User getCurrentUser(){
+		return userRepository.findOne(1); 
+	}
+	
+	public User getUser(int id){
+		return userRepository.findOne(id);
+	}
+	
+	public User addUser(User user){
+		return userRepository.save(user);
+	}
+	
+	public User updateUser(int id, User user){
+		return userRepository.save(user);
+	}
+	
+	public void deleteUser(int id){
+		userRepository.delete(id);
 	}
 }
