@@ -8,6 +8,8 @@ import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.twitter.api.Twitter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cmpe220.model.TwitterData;
 import com.cmpe220.model.User;
@@ -15,7 +17,7 @@ import com.cmpe220.service.TwitterDataService;
 import com.cmpe220.service.UserService;
 
 @Controller
-@RequestMapping("/connect")
+@RequestMapping(value = "/connect")
 public class ConnectController extends org.springframework.social.connect.web.ConnectController {
 	private Twitter twitter;
 	private ConnectionRepository connectionRepository;
@@ -28,9 +30,10 @@ public class ConnectController extends org.springframework.social.connect.web.Co
 	private User currentUser;
 	
     @Inject
-    public ConnectController(ConnectionFactoryLocator connectionFactoryLocator, ConnectionRepository connectionRepository) {
+    public ConnectController(ConnectionFactoryLocator connectionFactoryLocator, ConnectionRepository connectionRepository, Twitter twitter) {
         super(connectionFactoryLocator, connectionRepository);
         this.connectionRepository = connectionRepository;
+        this.twitter = twitter;
     }
 
     @Override
@@ -62,7 +65,20 @@ public class ConnectController extends org.springframework.social.connect.web.Co
     		
     	}
     	
-        return "redirect:/";
+        return "redirect:/#!/dashboard";
+    }
+    
+    @RequestMapping(value = "/currentUser", method=RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public User getCurrentUser() {
+    	twitter = connectionRepository.getPrimaryConnection(Twitter.class).getApi();
+    	TwitterData twitterUser = new TwitterData();
+
+    	long twitterId = twitter.userOperations().getProfileId();
+    	twitterUser = twitterDataServiceObj.getTwitterDataUser(twitterId);
+    	User currentUser = userServiceObj.getUser(twitterUser.getUserId());
+    	
+        return currentUser;
     }
 
 }

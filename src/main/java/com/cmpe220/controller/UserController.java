@@ -17,7 +17,16 @@ import com.cmpe220.service.UserService;
 @RestController
 public class UserController {
 	@Autowired
+	private ConnectController connectCtrl;
+	
+	@Autowired
 	private UserService userService;
+	
+	//
+	@RequestMapping("/testContCntrl")
+	public User getAllCntCtrl(){
+		return connectCtrl.getCurrentUser();
+	}
 	
 	//allUsers - GET get all users 
 	@RequestMapping("/users")
