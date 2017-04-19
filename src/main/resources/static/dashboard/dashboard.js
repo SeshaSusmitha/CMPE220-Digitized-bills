@@ -1,4 +1,4 @@
-angular.module('app', ['ngRoute', 'ngStorage'])
+angular.module('app.dashboard', ['ngRoute', 'ngStorage'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/dashboard', {
