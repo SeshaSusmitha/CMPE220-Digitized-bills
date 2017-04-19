@@ -1,7 +1,6 @@
 
-angular.module('app', ['ngRoute','ngResource', 'app.userAuth', 'app.dashboard']);
-
-config(function($routeProvider, $locationProvider) {
+angular.module('app', ['ngRoute','ngResource', 'app.userAuth', 'app.dashboard','app.landingPage'])
+.config(function($routeProvider, $locationProvider) {
   $routeProvider
    .when('/userAuth', {
     templateUrl: './user/userAuth.html',
@@ -11,4 +10,5 @@ config(function($routeProvider, $locationProvider) {
 	  templateUrl: './dashboard/dashboard.html',
     controller: 'DashboardCtrl'
   }) 
+  
 });

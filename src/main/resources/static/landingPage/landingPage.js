@@ -1,4 +1,4 @@
-angular.module('app', ['ngRoute', 'ngStorage'])
+angular.module('app.landingPage', ['ngRoute', 'ngStorage'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/landingPage', {
