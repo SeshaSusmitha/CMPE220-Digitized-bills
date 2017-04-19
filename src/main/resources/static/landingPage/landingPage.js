@@ -1,7 +1,7 @@
 angular.module('app.landingPage', ['ngRoute', 'ngStorage'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/landingPage', {
+  $routeProvider.when('/', {
     templateUrl: './landingPage/landingPage.html',
     controller: 'LandingPageCtrl'
   })
